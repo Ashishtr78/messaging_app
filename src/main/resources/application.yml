@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: messaging
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all                    # wait for all in-sync replicas -> no silent message loss
+      properties:
+        enable.idempotence: true   # exactly-once-per-partition on the producer side, safe retries
+
+    consumer:
+      # Unique group per instance. See ChatConsumer for why this matters for fan-out.
+      group-id: ${spring.application.name}-${random.uuid}
+      auto-offset-reset: latest    # a chat client cares about live messages, not history
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: com.ingsol.messaging.model
+        spring.json.value.default.type: com.ingsol.messaging.model.ChatMessage
+
+app:
+  kafka:
+    topic: chat-messages
+    partitions: 3
+    replicas: 1                    # bump to >=3 in a real multi-broker cluster
+
+logging:
+  level:
+    com.ingsol.messaging: INFO

@@ -1,0 +1,36 @@
+<!-- Minimal test client. Open http://localhost:8080/ with the app + Kafka running. -->
+<!doctype html>
+<meta charset="utf-8">
+<title>INGSOL Messaging test client</title>
+<h3>Room: <input id="room" value="room-42"> as <input id="user" value="alice"></h3>
+<input id="msg" placeholder="message" size="50"><button onclick="send()">Send</button>
+<pre id="log"></pre>
+
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7/bundles/stomp.umd.min.js"></script>
+<script>
+  const log = m => document.getElementById('log').textContent += m + '\n';
+  const client = new StompJs.Client({ webSocketFactory: () => new SockJS('/ws') });
+
+  client.onConnect = () => {
+    const room = document.getElementById('room').value;
+    client.subscribe('/topic/rooms/' + room, f => {
+      const m = JSON.parse(f.body);
+      log(`[${m.sentAt}] ${m.sender}: ${m.content}`);
+    });
+    log('connected, subscribed to ' + room);
+  };
+  client.activate();
+
+  function send() {
+    client.publish({
+      destination: '/app/chat.send',
+      body: JSON.stringify({
+        roomId: document.getElementById('room').value,
+        sender: document.getElementById('user').value,
+        content: document.getElementById('msg').value
+      })
+    });
+    document.getElementById('msg').value = '';
+  }
+</script>
