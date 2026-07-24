@@ -1,6 +1,6 @@
-package com.ingsol.messaging.messaging;
+package com.messaging.messaging;
 
-import com.ingsol.messaging.model.ChatMessage;
+import com.messaging.model.ChatMessage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;

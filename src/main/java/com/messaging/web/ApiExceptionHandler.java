@@ -1,4 +1,4 @@
-package com.ingsol.messaging.web;
+package com.messaging.web;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

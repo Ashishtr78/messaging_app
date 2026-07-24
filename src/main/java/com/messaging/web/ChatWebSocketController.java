@@ -1,7 +1,7 @@
-package com.ingsol.messaging.web;
+package com.messaging.web;
 
-import com.ingsol.messaging.messaging.ChatProducer;
-import com.ingsol.messaging.model.ChatMessage;
+import com.messaging.messaging.ChatProducer;
+import com.messaging.model.ChatMessage;
 import jakarta.validation.Valid;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;

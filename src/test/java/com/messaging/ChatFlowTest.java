@@ -1,7 +1,7 @@
-package com.ingsol.messaging;
+package com.messaging;
 
-import com.ingsol.messaging.messaging.ChatProducer;
-import com.ingsol.messaging.model.ChatMessage;
+import com.messaging.messaging.ChatProducer;
+import com.messaging.model.ChatMessage;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.ingsol.messaging.model;
+package com.messaging.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotBlank;

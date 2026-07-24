@@ -1,6 +1,6 @@
-package com.ingsol.messaging.messaging;
+package com.messaging.messaging;
 
-import com.ingsol.messaging.model.ChatMessage;
+import com.messaging.model.ChatMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;

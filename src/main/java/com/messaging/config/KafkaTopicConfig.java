@@ -1,4 +1,4 @@
-package com.ingsol.messaging.config;
+package com.messaging.config;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Value;

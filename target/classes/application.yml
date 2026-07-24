@@ -22,8 +22,8 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
-        spring.json.trusted.packages: com.ingsol.messaging.model
-        spring.json.value.default.type: com.ingsol.messaging.model.ChatMessage
+        spring.json.trusted.packages: com.messaging.model
+        spring.json.value.default.type: com.messaging.model.ChatMessage
 
 app:
   kafka:
@@ -33,4 +33,4 @@ app:
 
 logging:
   level:
-    com.ingsol.messaging: INFO
+    com.messaging: INFO
